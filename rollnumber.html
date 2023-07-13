@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head><title>
+	rollnumber
+</title>
+<link href="bootstrap.min.css" rel="stylesheet" /><link href="css/loginstyle.css" rel="stylesheet" /><link href="css/srfstyle.css" rel="stylesheet" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="Scripts/jquery.min.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<link href="css/bootstrap-datepicker.css" rel="stylesheet" />
+<style>
+    body{
+        background-color:rgba(206, 222, 135, 0.836);
+    }
+   </style>
+    </head>
+<body>
+     <div class="container" style="margin-left:15%">
+     <form method="post" action="#"  id="rollnumberform">
+    <div class="container">
+  <div class="row">
+      <div class="col-md-6"><h4>Student Rollnumber Generation form</h4></div>
+      <div class="col-md-6"><span class="pull-right">
+          <span class="glyphicon glyphicon-log-in">
+             <a href="../SVREC_SIS/Admin/admin.aspx" >Back</a>
+             
+          </span></div>
+  </div>
+</div>
+        <div class="container" style="margin-top:20px; border:3px solid #110808; border-radius: 10px;">
+                     
+          <div class="row">
+            <div class="col-md-4 panel panel-heading" style="display:none; color:red" id="address_error" ></div>
+          </div>
+            <div class="row form-group">
+            <label class="col-md-2 control-label" for="H.no">New Roll Number</label>
+            <div class="col-md-2">
+		<div class="input-group">
+			<span class="input-group-addon">
+			<i class="glyphicon glyphicon-th"></i>
+			</span>
+                <input name="roll_txtbx" type="text" maxlength="10" id="roll_txtbx" name="hno" class="form-control input-md ac_village" />
+            </div>
+                <span id="RequiredFieldValidator1" style="color:Red;visibility:hidden;">Please enter Roll Number</span>
+            </div>
+                
+              <div class="col-md-6">
+		         <span id="Label2" style="color:Red;font-weight:bold;"></span>
+                 </div>
+          </div>
+            <div class="row form-group">
+            <label class="col-md-2 control-label" for="H.no">First Name</label>
+            <div class="col-md-2">
+		<div class="input-group">
+			<span class="input-group-addon">
+			<i class="glyphicon glyphicon-user"></i>
+			</span>
+                <input name="firstname_txtbx" type="text" id="firstname_txtbx" class="form-control input-md ac_village" style="text-transform:uppercase;" />
+             </div>
+                <span id="RequiredFieldValidator2" style="color:Red;visibility:hidden;">Please enter First Name</span>
+            </div>
+            <label class="col-md-2 control-label" for="street">Middle Name</label>
+            <div class="col-md-2">
+		<div class="input-group">
+			<span class="input-group-addon">
+			<i class="glyphicon glyphicon-user"></i>
+			</span>
+                <input name="middlename_txtbx" type="text" id="middlename_txtbx" class="form-control input-md ac_street" style="text-transform:uppercase;" />
+            </div></div>
+            <label class="col-md-2 control-label" for="Village">Last Name(Surname)</label>
+            <div class="col-md-2">
+		<div class="input-group">
+			<span class="input-group-addon">
+			<i class="glyphicon glyphicon-user"></i>
+			</span>
+             <input name="lastname_txtbx" type="text" id="lastname_txtbx" class="form-control input-md ac_village" style="text-transform:uppercase;" />
+            </div>
+             <span id="RequiredFieldValidator3" style="color:Red;visibility:hidden;">Please enter Surname</span>
+		</div>
+          </div>
+          <div class="row form-group">
+           <label class="col-md-2 control-label" for="District">Category</label>  
+             <div class="col-md-2">
+                <select name="category_drpdwn" id="category_drpdwn" class="form-control input-md ac_district">
+	<option value="--select-- ">--select-- </option>
+	<option value="Counselling">Counselling</option>
+	<option value="Spot">Spot</option>
+	<option value="Management">Management</option>
+</select>
+             </div>
+            </div>
+          <div class="row form-group">
+            <label class="col-md-2 control-label" for="pin_code">Admission No</label>  
+            <div class="col-md-2">
+                <input name="Admissiono_txtbx" type="text" id="Admissiono_txtbx" class="form-control input-md" placeholder="" />
+            </div>
+              <label class="col-md-2 control-label" for="pin_code">Admission Date</label>  
+            <div class="col-md-2">
+			<div class="input-group">
+                <span class="input-group-addon">
+                      <span class="glyphicon-calendar glyphicon"></span>
+                  </span>
+		    <input name="doa" type="date" id="doa" class="form-control input-md" /> 
+               </div>
+		     </div>
+          </div>        
+             <div class="form-group row">
+            <div class="col-md-8 text-center">
+                   <input type="submit" name="Button1" value="Save"  id="Button1" class="btn btn-large btn-success" />
+                   <input type="submit" name="Button2" value="Clear"  id="Button2" class="btn btn-large btn-danger" />  
+            </div>
+          </div>
+        </div>
+        <div class="container" style="margin-top:20px; border:3px solid #0e0d0d; border-radius: 10px;">
+            <br />
+            <div class="form-group row"><div class="col-md-12"><B>For Bulk upload please select sample file from here</B> 
+                <a href="excel/Newrollnumber.xlsx">Newrollnumber.xlsx</a></div></div><br />
+            <div class="form-group row">
+                <label class="col-md-2 control-label" for="pin_code">Bulk Upload</label>  
+            <div class="col-md-4">
+             <input type="file" name="FileUpload1" id="FileUpload1" class="form-control input-md" placeholder="" />
+             <span id="ctl07" style="color:Red;display:none;">Please select Excel File</span>
+             <span id="RegularExpressionValidator1" style="color:Red;display:none;">Please select a valid excel file.</span>
+            </div>
+                <div class="col-md-6">
+                  <input type="submit" name="ctl08" value="Upload" controltovalidate="FileUpload1" class="btn btn-large btn-success" />    
+            </div>
+        </div>
+            <span id="Label1"></span>
+        </div> 
+</form>
+<div class="b">
+ <div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+     <p class="navbar-text pull-left">© 2018 - Site Design By<a href="http://www.svrec.ac.in" target="_blank">SVREC-DEVELOPERS</a>
+      </p>
+     </div>
+  </div>
+</div> 
+</body>
+</html>
