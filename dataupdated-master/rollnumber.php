@@ -15,7 +15,7 @@
    </style>
     </head>
 <body>
-     <form method="post" action="rollgen.php"  id="rollnumberform"  enctype="multipart/form-data">
+     <form method="post" action="#"  id="rollnumberform"  enctype="multipart/form-data">
       <div class="container" style="margin-left:15%"></div>
     <div class="container">
   <div class="row">
@@ -39,7 +39,7 @@
 			<span class="input-group-addon">
 			<i class="glyphicon glyphicon-th"></i>
 			</span>
-                <input name="roll_txtbx" type="text" maxlength="10" id="roll_txtbx" name="hno" class="form-control input-md ac_village" />
+                <input Required name="roll_txtbx" type="text" maxlength="10" id="roll_txtbx" name="hno" class="form-control input-md ac_village"/>
             </div>
                 <span id="RequiredFieldValidator1" style="color:Red;visibility:hidden;">Please enter Roll Number</span>
             </div>
@@ -55,7 +55,7 @@
 			<span class="input-group-addon">
 			<i class="glyphicon glyphicon-user"></i>
 			</span>
-                <input name="name_txtbx" type="text" id="name_txtbx" class="form-control input-md ac_village" style="text-transform:uppercase;" />
+                <input Required name="name_txtbx" type="text" id="name_txtbx" class="form-control input-md ac_village" style="text-transform:uppercase;" />
              </div>
                 <span id="RequiredFieldValidator2" style="color:Red;visibility:hidden;"> Name</span>
             </div>
@@ -65,7 +65,7 @@
 			<span class="input-group-addon">
 			<i class="glyphicon glyphicon-user"></i>
 			</span>
-      <input name="yoa_txtbx" type="date" id="yoa_txtbx" class="form-control input-md" /> 
+      <input Required name="yoa_txtbx" type="date" id="yoa_txtbx" class="form-control input-md" /> 
             </div></div>
             <label class="col-md-2 control-label" for="toc_drpdwn">type of course</label>
             <div class="col-md-2">
@@ -73,7 +73,7 @@
 			<span class="input-group-addon">
 			<i class="glyphicon glyphicon-user"></i>
 			</span>
-      <select name="toc_drpdwn" id="toc_drpdwn" class="form-control input-md ac_district">
+      <select  Required name="toc_drpdwn" id="toc_drpdwn" class="form-control input-md ac_district">
         <option value="--select-- ">--select-- </option>
         <option value="regular">regular</option>
         <option value="open">open</option>
@@ -87,7 +87,7 @@
     <span class="input-group-addon">
     <i class="glyphicon glyphicon-user"></i>
     </span>
-    <select name="branch_drpdwn" id="branch_drpdwn" class="form-control input-md ac_district">
+    <select Required name="branch_drpdwn" id="branch_drpdwn" class="form-control input-md ac_district">
       <option value="--select-- ">--select-- </option>
       <option value="CSE">CSE</option>
       <option value="ECE">ECE</option>
@@ -101,7 +101,7 @@
           <div class="row form-group">
            <label class="col-md-2 control-label" for="category_drpdwn">Category</label>  
              <div class="col-md-2">
-                <select name="category_drpdwn" id="category_drpdwn" class="form-control input-md ac_district">
+                <select  Required name="category_drpdwn" id="category_drpdwn" class="form-control input-md ac_district">
 	<option value="--select-- ">--select-- </option>
 	<option value="Counselling">Counselling</option>
 	<option value="Spot">Spot</option>
@@ -112,7 +112,7 @@
           <div class="row form-group">
             <label class="col-md-2 control-label" for="Admissiono_txtbx">Admission No</label>  
             <div class="col-md-2">
-                <input name="Admissiono_txtbx" type="text" id="Admissiono_txtbx" class="form-control input-md" placeholder="" />
+                <input Required name="Admissiono_txtbx" type="text" id="Admissiono_txtbx" class="form-control input-md" placeholder="" />
             </div>
               <label class="col-md-2 control-label" for="doa_txtbx">Admission Date</label>  
             <div class="col-md-2">
@@ -120,7 +120,7 @@
                 <span class="input-group-addon">
                       <span class="glyphicon-calendar glyphicon"></span>
                   </span>
-		    <input name="doa_txtbx" type="date" id="doa_txtbx" class="form-control input-md" /> 
+		    <input Required name="doa_txtbx" type="date" id="doa_txtbx" class="form-control input-md" /> 
                </div>
 		     </div>
           </div>   
@@ -128,12 +128,12 @@
             
             <label class="col-md-2 control-label" for="College_txtbx">college name</label>  
             <div class="col-md-2">
-                <input name="College_txtbx" type="text" id="College_txtbx" class="form-control input-md" placeholder="" />
+                <input Required name="College_txtbx" type="text" id="College_txtbx" class="form-control input-md" placeholder="" />
             </div>    
             <div class="row form-group">
               <label class="col-md-2 control-label" for="course_drpdwn">course</label>  
                 <div class="col-md-2">
-                   <select name="course_drpdwn" id="course_drpdwn" class="form-control input-md ac_district">
+                   <select Required name="course_drpdwn" id="course_drpdwn" class="form-control input-md ac_district">
      <option value="--select-- ">--select-- </option>
      <option value="Counselling">DIPLOMA</option>
      <option value="Spot">B-TECH</option>
