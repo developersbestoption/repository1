@@ -1,3 +1,6 @@
+<?php  
+require 'conection.php';
+?>
 <!DOCTYPE html>
 <html>
 <head><title>
@@ -15,7 +18,7 @@
    </style>
     </head>
 <body>
-     <form method="post" action="#"  id="rollnumberform"  enctype="multipart/form-data">
+     <form method="post" action="rollgen.php"  id="rollnumberform"  enctype="multipart/form-data">
       <div class="container" style="margin-left:15%"></div>
     <div class="container">
   <div class="row">
@@ -39,11 +42,11 @@
 			<span class="input-group-addon">
 			<i class="glyphicon glyphicon-th"></i>
 			</span>
-                <input Required name="roll_txtbx" type="text" maxlength="10" id="roll_txtbx" name="hno" class="form-control input-md ac_village"/>
-            </div>
+                <input Required name="roll_txtbx" type="text" maxlength="10" id="roll_txtbx" name="hno"   class="form-control input-md ac_village"/>
+            </div><br>
+            <button class="btn-primary">check</button>
                 <span id="RequiredFieldValidator1" style="color:Red;visibility:hidden;">Please enter Roll Number</span>
             </div>
-                
               <div class="col-md-6">
 		         <span id="Label2" style="color:Red;font-weight:bold;"></span>
                  </div>
@@ -152,3 +155,87 @@
 </form>
 </body>
 </html>
+
+
+
+
+
+
+
+<!--
+<html>
+     <style>
+.error{
+    color:red;
+    font-weight:bold;
+}
+
+    </style>
+    </html> -->
+<!-- <?php
+// Include another PHP file
+require 'conection.php';
+
+$rollno=$_POST['roll_txtbx'];
+$name = $_POST["name_txtbx"];
+$yoa = $_POST["yoa_txtbx"];
+$toc = $_POST["toc_drpdwn"];
+$branch = $_POST['branch_drpdwn'];
+$category = $_POST['category_drpdwn'];
+$admision = $_POST['Admissiono_txtbx'];
+$doa = $_POST['doa_txtbx'];
+$college = $_POST['College_txtbx'];
+$course = $_POST['course_drpdwn'];
+// Prepare the SQL statement
+$sql1 = "SELECT * FROM basicdata WHERE rollno = '$rollno'";
+$result = mysqli_query($connection, $sql1);
+$row = mysqli_fetch_assoc($result);
+
+
+
+$sql = "INSERT INTO  basicdata(rollno,studentname,collegename,yoa,coursetype,course	,branch,category,admno,doa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+// Prepare and bind the statement
+$stmt = $connection->prepare($sql);
+$stmt->bind_param("ssssssssis",$rollno, $name, $college, $yoa, $toc,$course,$branch, $category ,$admision,$doa);
+
+// Execute the statement
+if ($stmt->execute()) {
+    echo "New record inserted successfully.";
+} else {
+    echo "Error: " . $sql . "<br>" . $connection->error;
+}
+// Close the statement and connection
+$stmt->close();
+$connection->close();
+//header("location: rollnumber.php");
+
+//header("location: rollnumber.php");
+?>
+
+
+<?php
+             $rollno="#roll_txtbx";
+
+            $sql1 = "SELECT * FROM basicdata WHERE rollno = '$rollno'";
+            $result = mysqli_query($connection, $sql1);
+            $row = mysqli_fetch_assoc($result);
+          
+            if($rollno==$row['rollno']){
+            echo "Error: Roll number already exists in the database.";
+          } 
+
+          $connection->close();
+
+            ?>
+
+
+
+
+
+
+
+
+
+
+-->
