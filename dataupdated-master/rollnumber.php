@@ -70,7 +70,7 @@ if (mysqli_num_rows($result) > 0) {
 			<span class="input-group-addon">
 			<i class="glyphicon glyphicon-th"></i>
 			</span>
-                <input Required name="roll_txtbx" type="text" maxlength="10" id="roll_txtbx"   value="<?php if(isset($_POST['Rollno_txtbx'])){ echo $rollno; }?>"    class="form-control input-md ac_village"/>
+                <input Required name="Rollno_txtbx" type="text" maxlength="10" id="Rollno_txtbx"   value="<?php if(isset($_POST['Rollno_txtbx'])){ echo $rollno; }?>"    class="form-control input-md ac_village"/>
              </div>
              <input type="submit" name="srh_btn" value="check" id="chk_btn" class="btn btn-large btn-warning" />
     
