@@ -4,35 +4,36 @@
 //require 'basicdata.php';
 ?>
 
-<?php
+ <?php
+if(isset($_POST['Rollno_txtbx'])){
+ $rollno = $_POST['Rollno_txtbx'];
 
-$rollno = $_POST['Rollno_txtbx'];
+// // Connect to the database
+// $conn = mysqli_connect("localhost", "root", "", "sdms");
 
-// Connect to the database
-$conn = mysqli_connect("localhost", "root", "", "sdbms");
+// // Get the name from the database
+// $sql = "SELECT * FROM basicdata WHERE rollno = '$rollno'";
+// $result = mysqli_query($conn, $sql);
 
-// Get the name from the database
-$sql = "SELECT * FROM basicdata WHERE rollno = '$rollno'";
-$result = mysqli_query($conn, $sql);
+// if (mysqli_num_rows($result) > 0) {
+//   // Get the name from the result set
+//   $row = mysqli_fetch_assoc($result);
+//   $name = $row['studentname'];
+//   $yoa = $row['yoa'];
+//   $toc = $row['coursetype'];
+//   $branch = $row['branch'];
+//   $Category	= $row['category'];
+//   $admno = $row['admno'];
+//   $doa = $row['doa'];
+//   $collegename = $row['collegename'];
+//   $course = $row['course'];
+ 
+// } else {
 
-if (mysqli_num_rows($result) > 0) {
-  // Get the name from the result set
-  $row = mysqli_fetch_assoc($result);
-  $name = $row['Name'];
-  $yoa = $row['yoa'];
-  $toc = $row['toc'];
-  $branch = $row['branch'];
-  $Category	= $row['Category'];
-  $admno = $row['admno'];
-  $doa = $row['doa'];
-  $collegename = $row['collegename'];
-  $course = $row['course'];
-} else {
-  // The rollno is not in the database
-  $name = "";
-}
-
-?>
+//   echo '<script>alert(""hello world")</script>' ;
+// }
+ }
+?> 
 
 <html>
 <head><link rel="shortcut icon" href="#" /><title>
@@ -60,7 +61,7 @@ if (mysqli_num_rows($result) > 0) {
           
            
         </span></div>
-        <div class="col-md-3"><span class="pull-right"><a href="update.php"><input  type="button" name="Edit_btn" value="Edit" id="Edit_btn" class="btn btn-large btn-warning" /></a>s </span></div>
+        <div class="col-md-3"><span class="pull-right"><a href="update.php"><input  type="button" name="Edit_btn" value="Edit" id="Edit_btn" class="btn btn-large btn-warning" /></a> </span></div>
   </div>
 </div>
 
@@ -79,16 +80,46 @@ if (mysqli_num_rows($result) > 0) {
             <div class="col-md-6">
                <div class="input-group">
 			      <span class="input-group-addon"> </span>
-                  <input name="Rollno_txtbx" type="text" maxlength="10" id="Rollno_txtbx"  value="<?php echo $rollno; ?>" class="form-control input-md ac_mobile" />
+                  <input name="Rollno_txtbx" type="text" maxlength="10" id="Rollno_txtbx"  value="<?php if(isset($_POST['Rollno_txtbx'])){ echo $rollno; }?>" class="form-control input-md ac_mobile" />
                </div>
                 <span id="RequiredFieldValidator1" ValidationExpression=".{5}.*" style="color:Red;visibility:hidden;">Please enter Roll Number</span>
             </div>
+            
             <div class="col-md-2">
                   <div class="input-group">
 	                 <input type="submit" name="srh_btn" value="Search" id="srh_btn" class="btn btn-large btn-success" />
                   </div>
             </div>
          </div>
+         <?php
+if(isset($_POST['Rollno_txtbx'])){
+$rollno = $_POST['Rollno_txtbx'];
+
+// Connect to the database
+$conn = mysqli_connect("localhost", "root", "", "sdms");
+
+// Get the name from the database
+$sql = "SELECT * FROM basicdata WHERE rollno = '$rollno'";
+$result = mysqli_query($conn, $sql);
+
+
+  // Get the name from the result set
+  $row = mysqli_fetch_assoc($result);
+  $name = $row['studentname'];
+  $yoa = $row['yoa'];
+  $toc = $row['coursetype'];
+  $branch = $row['branch'];
+  $Category	= $row['category'];
+  $admno = $row['admno'];
+  $doa = $row['doa'];
+  $collegename = $row['collegename'];
+  $course = $row['course'];
+} else {
+  // The rollno is not in the database
+  $name = "";
+}
+
+?>
         <div class="row form-group">
             <div class="col-md-12">
                 <span id="rollsrh" style="color:Red;"></span>
@@ -100,22 +131,22 @@ if (mysqli_num_rows($result) > 0) {
 </div>
     
         <div class="row">
-                <div class="col-md-6"><h5>Year of Admission ::<b><?php echo   $yoa; ?></b><b><span id="yrlbl"></span></b></h5></div>
-                <div class="col-md-6"><h5>Date of Admission ::<b><?php echo $doa; ?></b><b><span id="adm_dat_lbl"></span></b></h5></div>
+                <div class="col-md-6"><h5>Year of Admission ::<b><?php if(isset($_POST['Rollno_txtbx'])){ echo   $yoa;} ?></b><b><span id="yrlbl"></span></b></h5></div>
+                <div class="col-md-6"><h5>Date of Admission ::<b><?php if(isset($_POST['Rollno_txtbx'])){ echo $doa; }?></b><b><span id="adm_dat_lbl"></span></b></h5></div>
             </div>
             <div class="row">
-                <div class="col-md-6"><h5>college Name::<b><?php echo $collegename; ?></b><b><span id="clglbl"></span></b></h5></div>
-                <div class="col-md-6"><h5>Admission_# ::<b><?php echo $admno; ?></b><b><span id="adm_no_lbl"></span></h5></b></div>
+                <div class="col-md-6"><h5>college Name::<b><?php  if(isset($_POST['Rollno_txtbx'])){echo $collegename;} ?></b><b><span id="clglbl"></span></b></h5></div>
+                <div class="col-md-6"><h5>Admission_# ::<b><?php if(isset($_POST['Rollno_txtbx'])){ echo $admno; } ?></b><b><span id="adm_no_lbl"></span></h5></b></div>
             </div>
             <div class="row">
-               <div class="col-md-6"><h5>Type of Course ::<b><?php echo $toc; ?></b><b><span id="tpecrselbl"></span></b></h5></div>
-               <div class="col-md-6"><h5>Category ::<b><?php echo $Category; ?></b><b><span id="catry_lbl"></span></b></h5></div>
+               <div class="col-md-6"><h5>Type of Course ::<b><?php if(isset($_POST['Rollno_txtbx'])){ echo $toc; }?></b><b><span id="tpecrselbl"></span></b></h5></div>
+               <div class="col-md-6"><h5>Category ::<b><?php  if(isset($_POST['Rollno_txtbx'])){echo $Category;} ?></b><b><span id="catry_lbl"></span></b></h5></div>
             </div>
             <div class="row">
-                <div class="col-md-4"><h5>Course ::<b><?php echo $course; ?></b><b><span id="crselbl"></span></h5></b></div>
+                <div class="col-md-4"><h5>Course ::<b><?php if(isset($_POST['Rollno_txtbx'])){echo $course;} ?></b><b><span id="crselbl"></span></h5></b></div>
             </div>
             <div class="row">
-                <div class="col-md-6"><h5>Branch ::<b><?php echo $branch; ?></b><b><span id="brlbl"></span></b></h5></div>
+                <div class="col-md-6"><h5>Branch ::<b><?php if(isset($_POST['Rollno_txtbx'])){echo $branch;} ?></b><b><span id="brlbl"></span></b></h5></div>
             </div>
 
     </div>
@@ -145,7 +176,7 @@ if (mysqli_num_rows($result) > 0) {
 			<!--span class="input-group-addon">
 			<i class="glyphicon glyphicon-user"></i>
 			</span-->
-                <input name="name" type="text" value="<?php echo $name; ?>" id="name" class="form-control input-md disabled" />
+                <input name="name" type="text" value="<?php if(isset($_POST['Rollno_txtbx'])){ echo $name; }?>" id="name" class="form-control input-md disabled" />
 
             </div></div>
 
