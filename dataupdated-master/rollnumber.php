@@ -26,7 +26,7 @@ if (mysqli_num_rows($result) > 0) {
   $collegename = $row['collegename'];
   $course = $row['course'];
 } else {
-  echo "please check the number";
+  // echo "please check the number";
 }
 }
 ?> 
@@ -103,7 +103,7 @@ if (mysqli_num_rows($result) > 0) {
   $collegename = $row['collegename'];
   $course = $row['course'];
 } else {
-  echo "please check the number";
+  echo '<script>alert("hello") </script>';
 }
 }
 ?> 
