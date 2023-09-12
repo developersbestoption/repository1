@@ -7,7 +7,7 @@ if(isset($_POST['Rollno_txtbx'])){
 $rollno = $_POST['Rollno_txtbx']; 
 
 // Connect to the database
-$conn = mysqli_connect("localhost", "root", "", "sdbms");
+$conn = mysqli_connect("localhost", "root", "", "sdms");
 
 // Get the name from the database
 $sql = "SELECT * FROM basicdata WHERE rollno = '$rollno'";
@@ -18,9 +18,9 @@ if (mysqli_num_rows($result) > 0) {
   $row = mysqli_fetch_assoc($result);
   $name = $row['studentname'];
   $yoa = $row['yoa'];
-  $toc = $row['toc'];
+  $toc = $row['coursetype'];
   $branch = $row['branch'];
-  $Category	= $row['Category'];
+  $Category	= $row['category'];
   $admno = $row['admno'];
   $doa = $row['doa'];
   $collegename = $row['collegename'];
@@ -151,7 +151,7 @@ if(isset($_POST['Rollno_txtbx'])){
 $rollno = $_POST['Rollno_txtbx']; 
 
 // Connect to the database
-$conn = mysqli_connect("localhost", "root", "", "sdbms");
+$conn = mysqli_connect("localhost", "root", "", "sdms");
 
 // Get the name from the database
 $sql = "SELECT * FROM basicdata WHERE rollno = '$rollno'";
@@ -162,9 +162,9 @@ if (mysqli_num_rows($result) > 0) {
   $row = mysqli_fetch_assoc($result);
   $name = $row['studentname'];
   $yoa = $row['yoa'];
-  $toc = $row['toc'];
+  $toc = $row['coursetype'];
   $branch = $row['branch'];
-  $Category	= $row['Category'];
+  $Category	= $row['category'];
   $admno = $row['admno'];
   $doa = $row['doa'];
   $collegename = $row['collegename'];
