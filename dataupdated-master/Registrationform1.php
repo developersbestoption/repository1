@@ -82,6 +82,7 @@ if(isset($_POST['Rollno_txtbx'])){
 			      <span class="input-group-addon"> </span>
                   <input name="Rollno_txtbx" type="text" maxlength="10" id="Rollno_txtbx"  value="<?php if(isset($_POST['Rollno_txtbx'])){ echo $rollno; }?>" class="form-control input-md ac_mobile" />
                </div>
+               <p id="place" class="h4 text-danger"></p>
                 <span id="RequiredFieldValidator1" ValidationExpression=".{5}.*" style="color:Red;visibility:hidden;">Please enter Roll Number</span>
             </div>
             
@@ -93,33 +94,33 @@ if(isset($_POST['Rollno_txtbx'])){
          </div>
          <?php
 if(isset($_POST['Rollno_txtbx'])){
-$rollno = $_POST['Rollno_txtbx'];
+$rollno = $_POST['Rollno_txtbx']; 
 
 // Connect to the database
-$conn = mysqli_connect("localhost", "root", "", "sdms");
+$conn = mysqli_connect("localhost", "root", "", "sdbms");
 
 // Get the name from the database
 $sql = "SELECT * FROM basicdata WHERE rollno = '$rollno'";
 $result = mysqli_query($conn, $sql);
 
-
+if (mysqli_num_rows($result) > 0) {
   // Get the name from the result set
   $row = mysqli_fetch_assoc($result);
   $name = $row['studentname'];
   $yoa = $row['yoa'];
-  $toc = $row['coursetype'];
+  $toc = $row['toc'];
   $branch = $row['branch'];
-  $Category	= $row['category'];
+  $Category	= $row['Category'];
   $admno = $row['admno'];
   $doa = $row['doa'];
   $collegename = $row['collegename'];
   $course = $row['course'];
 } else {
-  // The rollno is not in the database
-  $name = "";
+   //echo '<script>alert("hello") </script>';
+     echo '<script>document.getElementById("place").innerHTML = "this number is not avilable"</script>';
 }
-
-?>
+}
+?> 
         <div class="row form-group">
             <div class="col-md-12">
                 <span id="rollsrh" style="color:Red;"></span>
@@ -131,22 +132,37 @@ $result = mysqli_query($conn, $sql);
 </div>
     
         <div class="row">
-                <div class="col-md-6"><h5>Year of Admission ::<b><?php if(isset($_POST['Rollno_txtbx'])){ echo   $yoa;} ?></b><b><span id="yrlbl"></span></b></h5></div>
-                <div class="col-md-6"><h5>Date of Admission ::<b><?php if(isset($_POST['Rollno_txtbx'])){ echo $doa; }?></b><b><span id="adm_dat_lbl"></span></b></h5></div>
+                <div class="col-md-6"><h5>Year of Admission ::<b><?php if(isset($_POST['Rollno_txtbx'])){ 
+                   if (mysqli_num_rows($result) > 0) {
+                  echo   $yoa;} }?></b><b><span id="yrlbl"></span></b></h5></div>
+                <div class="col-md-6"><h5>Date of Admission ::<b><?php if(isset($_POST['Rollno_txtbx'])){
+                   if (mysqli_num_rows($result) > 0) {
+                     echo $doa;} }?></b><b><span id="adm_dat_lbl"></span></b></h5></div>
             </div>
             <div class="row">
-                <div class="col-md-6"><h5>college Name::<b><?php  if(isset($_POST['Rollno_txtbx'])){echo $collegename;} ?></b><b><span id="clglbl"></span></b></h5></div>
-                <div class="col-md-6"><h5>Admission_# ::<b><?php if(isset($_POST['Rollno_txtbx'])){ echo $admno; } ?></b><b><span id="adm_no_lbl"></span></h5></b></div>
+                <div class="col-md-6"><h5>college Name::<b><?php  if(isset($_POST['Rollno_txtbx'])){
+                  {
+                    if (mysqli_num_rows($result) > 0) {
+                    echo $collegename;}}} ?></b><b><span id="clglbl"></span></b></h5></div>
+                <div class="col-md-6"><h5>Admission_# ::<b><?php if(isset($_POST['Rollno_txtbx'])){  if (mysqli_num_rows($result) > 0) {echo $admno; }} ?></b><b><span id="adm_no_lbl"></span></h5></b></div>
             </div>
             <div class="row">
-               <div class="col-md-6"><h5>Type of Course ::<b><?php if(isset($_POST['Rollno_txtbx'])){ echo $toc; }?></b><b><span id="tpecrselbl"></span></b></h5></div>
-               <div class="col-md-6"><h5>Category ::<b><?php  if(isset($_POST['Rollno_txtbx'])){echo $Category;} ?></b><b><span id="catry_lbl"></span></b></h5></div>
+               <div class="col-md-6"><h5>Type of Course ::<b><?php if(isset($_POST['Rollno_txtbx'])){ 
+                 if (mysqli_num_rows($result) > 0) {
+                echo $toc; }}?></b><b><span id="tpecrselbl"></span></b></h5></div>
+               <div class="col-md-6"><h5>Category ::<b><?php  if(isset($_POST['Rollno_txtbx'])){
+                 if (mysqli_num_rows($result) > 0) {
+                echo $Category;}} ?></b><b><span id="catry_lbl"></span></b></h5></div>
             </div>
             <div class="row">
-                <div class="col-md-4"><h5>Course ::<b><?php if(isset($_POST['Rollno_txtbx'])){echo $course;} ?></b><b><span id="crselbl"></span></h5></b></div>
+                <div class="col-md-4"><h5>Course ::<b><?php if(isset($_POST['Rollno_txtbx'])){
+                   if (mysqli_num_rows($result) > 0) {
+                  echo $course;}} ?></b><b><span id="crselbl"></span></h5></b></div>
             </div>
             <div class="row">
-                <div class="col-md-6"><h5>Branch ::<b><?php if(isset($_POST['Rollno_txtbx'])){echo $branch;} ?></b><b><span id="brlbl"></span></b></h5></div>
+                <div class="col-md-6"><h5>Branch ::<b><?php if(isset($_POST['Rollno_txtbx'])){
+                   if (mysqli_num_rows($result) > 0) {
+                  echo $branch;} }?></b><b><span id="brlbl"></span></b></h5></div>
             </div>
 
     </div>
@@ -176,7 +192,9 @@ $result = mysqli_query($conn, $sql);
 			<!--span class="input-group-addon">
 			<i class="glyphicon glyphicon-user"></i>
 			</span-->
-                <input name="name" type="text" value="<?php if(isset($_POST['Rollno_txtbx'])){ echo $name; }?>" id="name" class="form-control input-md disabled" />
+                <input name="name" type="text" value="<?php if(isset($_POST['Rollno_txtbx'])){
+                   if (mysqli_num_rows($result) > 0) {
+                  echo $name; }}?>" id="name" class="form-control input-md disabled" />
 
             </div></div>
 
@@ -369,12 +387,11 @@ $result = mysqli_query($conn, $sql);
             </div></div>
 
 
-                <label class="col-md-1 control-label" for="first_name">Upload Image</label>  
+                <label class="col-md-1 control-label" for="first_name">rollno:</label>  
             <div class="col-md-2">
 			
 			
-              <input type="file" name="imageupload" id="imageupload" />
-                <span id="RegularExpressionValidator1" style="color:Red;visibility:hidden;">Only Images are allowed</span>
+              <input type="text" name="Rollno_txtbx"value="<?php if(isset($_POST['Rollno_txtbx'])){ if (mysqli_num_rows($result) > 0) { echo $rollno; }}?>"  id="Rollno_txtbx" />
                
             </div>
 
