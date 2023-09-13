@@ -1,7 +1,52 @@
 <!DOCTYPE html>
+<b><p id="place" class="h4 text-danger"></p></b>
+
+<?php  
+//require 'conection.php';
+//include 'rollgen.php';
+if(isset($_POST['Rollno_txtbx'])){
+$rollno = $_POST['Rollno_txtbx']; 
+
+// Connect to the database
+$conn = mysqli_connect("localhost", "root", "", "sdbms");
+
+// Get the name from the database
+$sql = "SELECT * FROM register WHERE rollno = '$rollno'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  // Get the name from the result set
+  $row = mysqli_fetch_assoc($result);
+  $rollno=$row['rollno'];
+  $name= $row['name'];
+  $gender = $row['gender'];
+  $dateofbirth = $row['dateofbirth'];
+  $bloodgroup = $row['bloodgroup'];
+  $placeofbirth= $row['placeofbirth'];
+  $mothertongue = $row['mothertongue'];
+  $caste = $row['caste'];
+  $religion = $row['religion'];
+  $nationality = $row['nationality'];
+  $aadhar = $row['aadhar'];
+  $contact= $row['contact'];
+  $moles = $row['moles'];
+  $emailid= $row['emailid'];
+  $sschallticket = $row['sschallticket'];
+  $sscboard = $row['sscboard'];
+  $sscgpa = $row['sscgpa'];
+  $yearofpassing = $row['yearofpassing'];
+  $sscschool = $row['sscschool'];
+  $passtype= $row['passtype'];
+} else {
+     //echo '<script>alert("hello") </script>';
+      echo '<script>document.getElementById("place").innerHTML = "this number is not avilable"</script>';
+  }
+
+}
+?> 
 <html>
 <head><link rel="shortcut icon" href="#" /><title>
-	Student-Profile
+	Student-Profile 
 </title><link href="bootstrap.min.css" rel="stylesheet" /><link href="css/loginstyle.css" rel="stylesheet" /><link href="css/srfstyle.css" rel="stylesheet" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
@@ -13,8 +58,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /></head>
 <body>
    
-    <form method="post" action="./profile.aspx" onsubmit="javascript:return WebForm_OnSubmit();" id="form1">
-         <div class="container" style="margin-top:10px;"">
+    <form method="post" action="singleprofile.php" onsubmit="javascript:return WebForm_OnSubmit();" id="form1">
+         <div class="container" style="margin-top:10px;">
             <div class="row center-block">
                 <div class=" col-lg-2 col-md-1 col-sm-1"></div>
                 <div class="col-xs-12 col-lg-10 col-md-11 col-sm-11">
@@ -32,6 +77,7 @@
           </span></div>
   </div>
 </div>
+
         <div class="container" style="margin-top:20px;  display: flex; border:3px solid #0e0d0d; border-radius: 10px;">
     <div class="container">
         <div class="row">
@@ -39,26 +85,28 @@
             <div class="col-md-6 panel panel-heading">Enter Roll Number</div>
             </div>
         </div>
+        
         <div class="row form-group">
             <label class="col-md-2">Roll No</label>
             <div class="col-md-6">
                <div class="input-group">
 			      <span class="input-group-addon"> </span>
-                  <input name="Rollno_txtbx" type="text" maxlength="10" id="Rollno_txtbx" class="form-control input-md ac_mobile" />
+                  <input name="Rollno_txtbx" type="text" maxlength="10" id="Rollno_txtbx" value="<?php if(isset($_POST['Rollno_txtbx'])){ echo $rollno; }?>"  class="form-control input-md ac_mobile"  />
                </div>
+               
                 <span id="RequiredFieldValidator1" ValidationExpression=".{5}.*" style="color:Red;visibility:hidden;">Please enter Roll Number</span>
             </div>
+
             <div class="col-md-2">
                   <div class="input-group">
 	                 <input type="submit" name="srh_btn" value="Search"  id="srh_btn" class="btn btn-large btn-success" />
                   </div>
+
             </div>
          </div>
+         
         <div class="row form-group">
-            <div class="col-md-12">
-                <span id="rollsrh" style="color:Red;"></span>
-                <span id="Label1"></span>
-            </div>
+            
         </div>
         <div class="row"><div class="col-md-12">
          <span id="applbl"></span></div>
@@ -75,14 +123,6 @@
 
 </div>
         <br />
-        <div class="container">
-            <div class="row">
-                <div class="span6" style="float:unset; margin-left:20%;">
-                     <label class="col-md-3 control-label" ><img id="Image2" src="" style="height:175px;width:150px;" /></label>  
-                </div>
-               
-            </div>
-           
   <h2>Student Details</h2>
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home"><span class="glyphicon glyphicon-home"></span> Basic Info</a></li>
@@ -98,70 +138,207 @@
      <br />
         <div class="row form-group">
              <div class="col-md-4 ">
-                   <span id="Label3">Student Name: </span> 
+                   <span id="Label3">Student Name: <b><?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $name; 
+                  }
+
+                  }?> </b></span> 
                    <span id="name_lbl" style="font-weight:bold;"></span>
              </div>
              <div class="col-md-2 ">
-                  <span id="Label2">Gender: </span>
+                  <span id="Label2">Gender: <b>
+                  <?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $gender; 
+                  }
+
+                  }?></b>     
+               
+               
+               </span>
                   <span id="gender_lbl" style="font-weight:bold;"></span>
              </div>
              <div class="col-md-3 ">
-                 <span id="Label5">Date of Birth: </span>
+                 <span id="Label5">Date of Birth: 
+
+                 <b>
+                  <?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $dateofbirth; 
+                  }
+
+                  }?></b>
+
+                 </span>
                  <span id="dob_lbl" style="font-weight:bold;"></span>
             </div>
      </div>
 
         <div class="row form-group">
              <div class="col-md-4">
-                  <span id="Label7">Blood Group:  </span>
+                  <span id="Label7">Blood Group: 
+                  <b>
+                  <?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $bloodgroup; 
+                  }
+
+                  }?></b>          
+               
+               </span>
                   <span id="bldgrp_lbl" style="font-weight:bold;"></span>
              </div>
              <div class="col-md-2 col-xs-12">
-                   <span id="Label4">Birth Place: </span> 
+                   <span id="Label4">Birth Place: 
+
+                   <b>
+                  <?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $placeofbirth; 
+                  }
+                  else {
+                    echo "";
+                  }
+
+                  }?></b>   
+
+                   </span> 
                    <span id="bth_plc_lbl" style="font-weight:bold;"></span>
              </div>
             
              <div class="col-md-4">
-                 <span id="Label9">Mother Tongue: </span>
+                 <span id="Label9">Mother Tongue:
+                 <b>
+                  <?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $mothertongue; 
+                  }
+
+                  }?></b>        
+               
+               </span>
                  <span id="mtrtng_lbl" style="font-weight:bold;"></span>
             </div>
      </div>
 
         <div class="row form-group">
              <div class="col-md-4">
-                  <span id="Label6">Caste:  </span>
+                  <span id="Label6">Caste: 
+                    
+                  <b>
+                  <?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $caste; 
+                  }
+                  else
+                  {
+                  }
+
+                  }?></b>   
+               
+               
+               </span>
                   <span id="cste_lbl" style="font-weight:bold;"></span>
              </div>
              <div class="col-md-2 col-xs-12">
-                   <span id="Label10">Religion: </span> 
+                   <span id="Label10">Religion: 
+                   <b>
+                  <?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $religion; 
+                  }
+
+                  }?></b>   
+
+                   </span> 
                    <span id="rlgn_lbl" style="font-weight:bold;"></span>
              </div>
             
              <div class="col-md-4">
-                 <span id="Label12">Nationality: </span>
+                 <span id="Label12">Nationality:
+                    
+                 <b>
+                  <?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $nationality; 
+                  }
+
+                  }?></b>   
+               
+               </span>
                  <span id="Nty_lbl" style="font-weight:bold;"></span>
             </div>
      </div>
 
         <div class="row form-group">
              <div class="col-md-4">
-                  <span id="Label8">Aadhar #  </span>
+                  <span id="Label8">Aadhar # 
+                  <b>
+                  <?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $aadhar; 
+                  }
+
+                  }?></b>        
+               
+               </span>
                   <span id="std_adr_lbl" style="font-weight:bold;"></span>
              </div>
              <div class="col-md-2 col-xs-12">
-                   <span id="Label13">Contact # </span> 
+                   <span id="Label13">Contact # 
+
+                   <b>
+                  <?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $contact; 
+                  }
+
+                  }?></b>   
+
+                   </span> 
                    <span id="stdcnt_lbl" style="font-weight:bold;"></span>
              </div>
             
              <div class="col-md-4">
-                 <span id="Label15">Moles: </span>
+                 <span id="Label15">Moles:
+                 <b>
+                  <?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $moles; 
+                  }
+
+                  }?></b>        
+               
+               </span>
                  <span id="moles_lbl" style="font-weight:bold;"></span>
             </div>
      </div>
 
         <div class="row form-group">
              <div class="col-md-4">
-                  <span id="Label11">email id  </span>
+                  <span id="Label11">email id:
+                    
+                  <b>
+                  <?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $emailid; 
+                  }
+
+                  }?></b>   </span>
                   <span id="emailid_lbl" style="font-weight:bold;"></span>
              </div>
              
@@ -172,15 +349,47 @@
       <br />
         <div class="row form-group">
              <div class="col-md-3 ">
-                   <span id="Label34">SSC Hallticket #: </span> 
+                   <span id="Label34">SSC Hallticket #: 
+                    
+               
+                   <b>
+                  <?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $sschallticket; 
+                  }
+
+                  }?></b>   
+               
+               </span> 
                    <span id="sscno_lbl" style="font-weight:bold;"></span>
              </div>
              <div class="col-md-3 ">
-                  <span id="Label40">SSC Board: </span>
+                  <span id="Label40">SSC Board:
+                  <b>
+                  <?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $sscboard; 
+                  }
+
+                  }?></b>        
+               
+               </span>
                   <span id="sscbrd_lbl" style="font-weight:bold;"></span>
              </div>
              <div class="col-md-3 ">
-                 <span id="Label42">SSC(%): </span>
+                 <span id="Label42">SSC(%):
+                    
+                 <b>
+                  <?php if(isset($_POST['Rollno_txtbx'])){
+                  
+                  if (mysqli_num_rows($result) > 0) {
+                    echo $sscgpa; 
+                  }
+
+                  }?></b>   
+               </span>
                  <span id="sscper_lbl" style="font-weight:bold;"></span>
             </div>
             <div class="col-md-3 ">
