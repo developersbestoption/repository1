@@ -1,4 +1,50 @@
 <!DOCTYPE html>
+<b><p id="place" class="h4 text-danger"></p></b>
+<?php  
+//require 'conection.php';
+//include 'rollgen.php';
+if(isset($_POST['Rollno_txtbx'])){
+$rollno = $_POST['Rollno_txtbx']; 
+// Connect to the database
+$conn = mysqli_connect("localhost", "root", "", "sdbms");
+
+// Get the name from the database
+$sql = "SELECT * FROM register WHERE rollno = '$rollno'";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  // Get the name from the result set
+  $row = mysqli_fetch_assoc($result);
+  $rollno=$row['rollno'];
+  $name= $row['name'];
+  $gender = $row['gender'];
+  $dateofbirth = $row['dateofbirth'];
+  $bloodgroup = $row['bloodgroup'];
+  $placeofbirth= $row['placeofbirth'];
+  $mothertongue = $row['mothertongue'];
+  $caste = $row['caste'];
+  $religion = $row['religion'];
+  $nationality = $row['nationality'];
+  $aadhar = $row['aadhar'];
+  $contact= $row['contact'];
+  $moles = $row['moles'];
+  $emailid= $row['emailid'];
+  $sschallticket = $row['sschallticket'];
+  $sscboard = $row['sscboard'];
+  $sscgpa = $row['sscgpa'];
+  $yearofpassing = $row['yearofpassing'];
+  $sscschool = $row['sscschool'];
+  $passtype= $row['passtype'];
+} else {
+    // echo '<script>alert("hello") </script>';
+      echo '<script>document.getElementById("place").innerHTML = "this number is not avilable"</script>';
+  }
+
+}
+?> 
+
+
+
 <html >
 <head><link rel="shortcut icon" href="#" /><title>
 	Student-Reg-Form
@@ -15,7 +61,7 @@
 </head>
 <body>
    
-    <form method="post" action="#"  id="form1" enctype="multipart/form-data">
+    <form method="post" action="update.php"  id="form1" enctype="multipart/form-data">
         <div class="container" style="margin-left:15%" >
             <img src="#" class="img-responsive"/></div> 
        <br />
@@ -40,7 +86,7 @@
             <div class="col-md-6">
                <div class="input-group">
 			      <span class="input-group-addon"> </span>
-                  <input name="Rollno_txtbx" type="text" maxlength="10" id="Rollno_txtbx" class="form-control input-md ac_mobile" />
+                  <input name="Rollno_txtbx" value="<?php if(isset($_POST['Rollno_txtbx'])){ echo $rollno; }?>"  type="text" maxlength="10" id="Rollno_txtbx" class="form-control input-md ac_mobile" />
                </div>
                 <span id="RequiredFieldValidator1" ValidationExpression=".{5}.*" style="color:Red;visibility:hidden;">Please enter Roll Number</span>
             </div>
@@ -60,16 +106,15 @@
          <span id="applbl"></span></div>
         </div>
     </div>
-<div class="container">
+    <div class="container">
         <div class="row">
-            <div class="col-md-6"> 
-                <img id="#" src="" style="height:175px;width:150px;" />
-            </div>
+           
         </div>
     </div>
 
 </div>
-
+  </form>
+  <form method="post" action="#"  id="form2" enctype="multipart/form-data">
 
        
       <div class="container" style="margin-top:20px;   border:3px solid #080808; border-radius: 10px;">
@@ -83,7 +128,18 @@
             <div class="col-md-2">
 			<div class="input-group">
 			
-                <input name="name_txtbx" type="text" id="name_txtbx" class="form-control input-md" />
+                <input name="name_txtbx" type="text"
+                value="<?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $name;
+      }
+        }?>"
+                
+                
+                
+                
+                id="name_txtbx" class="form-control input-md" />
 
             </div></div>
 
@@ -93,8 +149,17 @@
 			<span class="input-group-addon">
 			<i class="glyphicon glyphicon-user"></i>
 			</span>
-                <select name="gdrdrpdwnlist" id="gdrdrpdwnlist" class="form-control input-md">
-	<option value=""></option>
+                <select name="gdrdrpdwnlist" id="gdrdrpdwnlist" 
+                
+               
+                
+                class="form-control input-md">
+	<option value=""><?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $gender;
+      }
+        }?>   </option>
 	<option value="Male">Male</option>
 	<option value="Female">Female</option>
 
@@ -108,7 +173,16 @@
 			<span class="input-group-addon">
                 <i class="glyphicon glyphicon-user"></i>
 			</span>
-		    <input name="dob" type="date" id="dob" class="form-control input-md" />
+		    <input name="dob" 
+        value="<?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $dateofbirth;
+      }
+        }?>"
+        
+        
+        type="date" id="dob" class="form-control input-md" />
 			  
                </div>
             </div>
@@ -124,8 +198,15 @@
 			<span class="input-group-addon">
 			<i class="glyphicon glyphicon-user"></i>
 			</span>
-                <select name="bldgrpdrpdwn" id="bldgrpdrpdwn" class="form-control input-md">
-	<option value="---Select---">---Select---</option>
+                <select name="bldgrpdrpdwn"
+                
+                id="bldgrpdrpdwn" class="form-control input-md">
+	<option value="---Select---"><?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $bloodgroup;
+      }
+        }?></option>
 	<option value="A+">A+</option>
 	<option value="A-">A-</option>
 	<option value="B+">B+</option>
@@ -145,7 +226,15 @@
 			<span class="input-group-addon">
 			<i class="glyphicon glyphicon-user"></i>
 			</span>
-                  <input name="plc_txtbx" type="text" id="plc_txtbx" class="form-control input-md" />
+                  <input name="plc_txtbx" 
+                  value="<?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $placeofbirth;
+      }
+        }?>"
+                  
+                  type="text" id="plc_txtbx" class="form-control input-md" />
              
             </div>
 		</div>
@@ -155,8 +244,15 @@
 			<span class="input-group-addon">
 			<i class="glyphicon glyphicon-user"></i>
 			</span>
-                <select name="mothertngedrpdwn" id="mothertngedrpdwn" class="form-control input-md">
-	<option value="---Select---">---Select---</option>
+                <select name="mothertngedrpdwn" id="mothertngedrpdwn" 
+               
+                class="form-control input-md">
+	<option value="---Select---"><?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $mothertongue;
+      }
+        }?></option>
 	<option value="Telugu">Telugu</option>
 	<option value="Urdu">Urdu</option>
 	<option value="Tamil">Tamil</option>
@@ -177,8 +273,15 @@
 			<span class="input-group-addon">
 			<i class="glyphicon glyphicon-user"></i>
 			</span>
-              <select name="cstedrpdwn" id="cstedrpdwn" class="form-control input-md">
-	<option value="---Select---">---Select---</option>
+              <select name="cstedrpdwn" 
+             
+              id="cstedrpdwn" class="form-control input-md">
+	<option value="---Select---"> <?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $caste;
+      }
+        }?></option>
 	<option value="OC">OC</option>
 	<option value="EBC">EBC</option>
 	<option value="BC-A">BC-A</option>
@@ -200,8 +303,16 @@
 			<span class="input-group-addon">
 			<i class="glyphicon glyphicon-user"></i>
 			</span>
-              <select name="rligndrpdwn" id="rligndrpdwn" class="form-control input-md">
-	<option value="---Select---">---Select---</option>
+              <select 
+             
+              
+              name="rligndrpdwn" id="rligndrpdwn" class="form-control input-md">
+	<option value="---Select---"> <?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $religion;
+      }
+        }?></option>
 	<option value="Hindu">Hindu</option>
 	<option value="Muslim">Muslim</option>
 	<option value="Christian">Christian</option>
@@ -218,8 +329,16 @@
 			</span>
             
 
-                <select name="ntndrpdwn" id="ntndrpdwn" class="form-control input-md">
-	<option value="---Select---">---Select---</option>
+                <select 
+                
+                
+                name="ntndrpdwn" id="ntndrpdwn" class="form-control input-md">
+	<option value="---Select---"><?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $nationality;
+      }
+        }?></option>
 	<option value="INDIAN">INDIAN</option>
 	<option value="Others">Others</option>
 
@@ -238,7 +357,15 @@
 			</span>
              
                 
-                 <input name="Aadr_txtbx" type="text" id="Aadr_txtbx" class="form-control input-md" />
+                 <input name="Aadr_txtbx" 
+                 value="<?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $aadhar;
+      }
+        }?>"
+                 
+                 type="text" id="Aadr_txtbx" class="form-control input-md" />
                
             </div></div>
 
@@ -249,14 +376,30 @@
 			<i class="glyphicon glyphicon-user"></i>
 			</span>
              
-                 <input name="cnt_txtbx" type="text" id="cnt_txtbx" class="form-control input-md" />
+                 <input name="cnt_txtbx" 
+                 
+                 value="<?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $contact;
+      }
+        }?>"
+                 type="text" id="cnt_txtbx" class="form-control input-md" />
             </div>
 		</div>
             <label class="col-md-1 control-label" for="last_name">Moles</label>  
             <div class="col-md-2">
 			<div class="input-group">
 			
-                <textarea name="mole_txtbx" rows="2" cols="20" id="mole_txtbx" class="form-control input-md">
+                <textarea 
+                
+                value="<?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $moles;
+      }
+        }?>"
+                name="mole_txtbx" rows="2" cols="20" id="mole_txtbx" class="form-control input-md">
 </textarea>
               
             </div>
@@ -274,19 +417,36 @@
 			<i class="glyphicon glyphicon-user"></i>
 			</span>
              
-                 <input name="emailid_txtbx" type="text" id="emailid_txtbx" class="form-control input-md" />
+                 <input name="emailid_txtbx" type="text" 
+                 
+                 value="<?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $emailid;
+      }
+        }?>"
+                 id="emailid_txtbx" class="form-control input-md" />
                
             </div></div>
  
-           <label class="col-md-1 control-label" for="first_name">Upload Image</label> 
-            <div class="col-md-4">
-               
-             <input type="file" name="imageupload" id="imageupload" class="form-control input-md"/>
-                 </div>
-         <div class="col-md-2">
-               <input type="submit" name="SaveImage_btn" value="Save Image" id="SaveImage_btn" class="btn btn-large btn-info" />
-        
-         </div>
+            <label class="col-md-1 control-label" for="middle_name">rollno #</label>  
+            <div class="col-md-2">
+			<div class="input-group">
+			<span class="input-group-addon">
+			<i class="glyphicon glyphicon-user"></i>
+			</span>
+             
+                 <input  
+                  value="<?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $rollno;
+      }
+        }?>"
+                 
+                 name="Rollno_txtbx" type="text" id="Rollno_txtbx" class="form-control input-md" />
+            </div>
+		</div>
 
                <div class="col-md-3text-center">
                        
@@ -309,7 +469,15 @@
             <label class="col-md-1 control-label" for="first_name">SSC HallTic #</label>  
              <div class="col-md-2">
 			    <div class="input-group">
-			      <input name="sscno_txtbx" type="text" id="sscno_txtbx" class="form-control input-md" />
+			      <input name="sscno_txtbx" 
+            value="<?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $sschallticket;
+      }
+        }?>"
+            
+            type="text" id="sscno_txtbx" class="form-control input-md" />
                 </div>
              </div>
             <label class="col-md-1 control-label" for="last_name">SSC Board</label>  
@@ -318,8 +486,16 @@
 			<span class="input-group-addon">
 			<i class="glyphicon glyphicon-user"></i>
 			</span>
-              <select name="sscbrddrpdwn" id="sscbrddrpdwn" class="form-control input-md">
-	<option value="---Select---">---Select---</option>
+              <select name="sscbrddrpdwn" 
+              
+              
+              id="sscbrddrpdwn" class="form-control input-md">
+	<option value="---Select---"><?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $sscboard;
+      }
+        }?></option>
 	<option value="Borad of SSC">Borad of SSC</option>
 	<option value="ICSE">ICSE</option>
 	<option value="CBSE">CBSE</option>
@@ -330,12 +506,33 @@
               <label class="col-md-1 control-label" for="last_name">SSC %(GPA)</label>  
               <div class="col-md-1">
 			<div class="input-group">
-			 <input name="sscper_txtbx" type="text" id="sscper_txtbx" class="form-control input-md" />
+			 <input name="sscper_txtbx"
+       
+      value=" <?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $sscgpa;
+      }
+        }?>"
+       
+       type="text" id="sscper_txtbx" class="form-control input-md" />
             </div>
 	      </div>
               <label class="col-md-1 control-label" for="last_name">Year of Passing</label>
               <div class="col-md-2">
-             <select name="sscyeardrpdwn" id="sscyeardrpdwn" class="form-control input-md">
+             <select name="sscyeardrpdwn"
+             
+             
+             id="sscyeardrpdwn" class="form-control input-md">
+             <option value="--select--">
+
+             <?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $yearofpassing;
+      }
+        }?>
+             </option>
 	<option value="2024">2024</option>
 	<option value="2023">2023</option>
 	<option value="2022">2022</option>
@@ -390,7 +587,14 @@
               <div class="col-md-2">
 			<div class="input-group">
 			
-              <input name="schoolname_txtbx" type="text" id="schoolname_txtbx" class="form-control input-md" />
+              <input name="schoolname_txtbx"
+              value="<?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $sscschool;
+      }
+        }?>"
+              type="text" id="schoolname_txtbx" class="form-control input-md" />
             </div>
 	      </div>
               <label class="col-md-1 control-label" for="last_name">Pass Type</label>  
@@ -399,8 +603,13 @@
 			<span class="input-group-addon">
 			<i class="glyphicon glyphicon-user"></i>
 			</span>
-              <select name="sscpassdrpdwn" id="sscpassdrpdwn" class="form-control input-md">
-	<option value="---Select---">---Select---</option>
+              <select name="sscpassdrpdwn"  id="sscpassdrpdwn" class="form-control input-md">
+	<option value="---Select---"><?php if(isset($_POST['Rollno_txtbx'])){
+                          if (mysqli_num_rows($result) > 0) {
+
+        echo $passtype;
+      }
+        }?></option>
 	<option value="Regular">Regular</option>
 	<option value="Supplementary">Supplementary</option>
 	<option value="Open School">Open School</option>
@@ -703,5 +912,6 @@
                            </div>
          
       </div>
+  </form>
 </body>
 </html>
